@@ -1,0 +1,1 @@
+A Simple Android app that implements **INTENT**, **SERVICE**, **ACTIVITY**, **BINDER** that can help me get a better understanding of how Android app works.

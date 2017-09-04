@@ -1,3 +1,6 @@
+**HelloWorld**
+A simple Android app helps me understand how it works.
+
 **prep_android**
 
 A simple bash program to get apk decompiled and reversed.
@@ -34,13 +37,16 @@ frida -U -l poc.js <package_name>		# load poc.js and hook <package_name>
 // enumerate classes
 Java.perform(function(){Java.enumerateLoadedClasses({"onMatch":function(className){ console.log(className) },"onComplete":function(){}})})
 
-//hook into some function
-Java.perform(function () {
-    var Activity = Java.use("<package_name>");
-    Activity.<function_name>.implementation = function () {
-        console.log("[*] <function_name> got called!");
-        this.<function_name>();
-    };
+//hook into some function, wrap with setImmediate will avoid frida timeout
+setImmediate(function() {
+    console.log("[*] Starting script");
+	Java.perform(function () {
+	    var Activity = Java.use("<package_name>");
+	    Activity.<function_name>.implementation = function () {
+	        console.log("[*] <function_name> got called!");
+	        this.<function_name>();
+	    };
+	});
 });
 
 ~~~

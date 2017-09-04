@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ha0k3.helloworld.MainActivity">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_send"
+        android:onClick="sendMessage"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="315dp"/>
+    <Button
+        android:id="@+id/start_service"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:onClick="startService_main"
+        android:text="Start Service"
+        />
+
+    <Button
+        android:id="@+id/stop_service"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:onClick="stopService_main"
+        android:text="Stop Service"
+        />
+
+    <Button
+        android:id="@+id/bind_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bind Service" />
+
+    <Button
+        android:id="@+id/unbind_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Unbind Service"/>
+
+
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="48dp"
+        android:layout_height="315dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/edit_message"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="35dp"/>
+
+</LinearLayout>
