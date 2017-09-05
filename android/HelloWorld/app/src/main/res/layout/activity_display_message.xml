@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,4 +14,13 @@
         android:text="@string/text_view"
         tools:layout_editor_absoluteX="90dp"
         tools:layout_editor_absoluteY="88dp"/>
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/Save_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="saveFile"
+        android:text="save msg to internal File"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="315dp"/>
+</LinearLayout>

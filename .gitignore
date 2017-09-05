@@ -1,1 +1,9 @@
+*.iml
+.gradle
+android/HelloWorld/local.properties
+android/HelloWorld/.idea/workspace.xml
+android/HelloWorld/.idea/libraries/
 .DS_Store
+android/HelloWorld/build/*
+*/captures
+.externalNativeBuild
