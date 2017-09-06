@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="burp_hello:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/burp_hello_jar</output-path>
+    <root id="archive" name="burp_hello.jar">
+      <element id="module-output" name="burp_hello" />
+    </root>
+  </artifact>
+</component>
