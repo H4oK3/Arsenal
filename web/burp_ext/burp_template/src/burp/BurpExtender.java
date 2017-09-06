@@ -49,7 +49,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
     public void processHttpMessage(int toolFlag, boolean messageIsRequest, IHttpRequestResponse messageInfo) {
         // This method is invoked when an HTTP request is about to be issued, and when an HTTP response has been received.
         // Read the creds from the property file
-        Properties properties = new Properties();
+        //Properties properties = new Properties();
         String host2Match = "";
         String cookie = "";
         String csrfToken = "";
@@ -57,18 +57,19 @@ public class BurpExtender implements IBurpExtender, IHttpListener {
         boolean endpointHttps = true;
         int endpointPort = 8181;
 
-        try {
-            properties.load(new FileInputStream("redirector-proxy.properties"));
-            host2Match = properties.getProperty("host").trim();
-            cookie = properties.getProperty("cookie").trim();
-            csrfToken = properties.getProperty("csrf").trim();
-
-        } catch (IOException e) {
-            stderr.println("Could not open 'redirector-proxy.properties' file");
-            stderr.println("Working Dir: " + System.getProperty("user.dir"));
-            e.printStackTrace(stderr);
-            return;
-        }
+        // Try to read some config file
+//        try {
+//            properties.load(new FileInputStream("redirector-proxy.properties"));
+//            host2Match = properties.getProperty("host").trim();
+//            cookie = properties.getProperty("cookie").trim();
+//            csrfToken = properties.getProperty("csrf").trim();
+//
+//        } catch (IOException e) {
+//            stderr.println("Could not open 'redirector-proxy.properties' file");
+//            stderr.println("Working Dir: " + System.getProperty("user.dir"));
+//            e.printStackTrace(stderr);
+//            return;
+//        }
 
         IHttpService httpService = messageInfo.getHttpService();
         String hostname = httpService.getHost();
