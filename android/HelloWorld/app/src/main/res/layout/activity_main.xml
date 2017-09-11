@@ -44,6 +44,13 @@
         android:layout_height="wrap_content"
         android:text="Unbind Service"/>
 
+    <Button
+        android:id="@+id/start_export"
+        android:layout_width="match_parent"
+        android:onClick="start_export"
+        android:layout_height="wrap_content"
+        android:text="start_export"/>
+
 
 
     <EditText

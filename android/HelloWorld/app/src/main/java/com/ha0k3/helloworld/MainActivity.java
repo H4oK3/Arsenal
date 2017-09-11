@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_MESSAGE = "com.ha0k3.helloworld.MESSAGE";
@@ -60,6 +61,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.i(Message_TAG,message);
 
         intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
+    // call exported activity
+    public void start_export(View view){
+        Toast.makeText(MainActivity.this, "Trying to start export activity!",
+                Toast.LENGTH_LONG).show();
+        Intent intent = new Intent();
+        ComponentName cn=new ComponentName("com.nccgroup.johnnyfive",
+                "com.nccgroup.johnnyfive.AdminActivity");
+        intent.setComponent(cn);
         startActivity(intent);
     }
 
