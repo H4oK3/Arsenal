@@ -21,6 +21,18 @@ This is the very first time that I am doing IOS app pentest, here I will note im
 	ipainstaller /tmp/app.ipa
 	~~~
 	
-	- apps are under: `/var/mobile/Containers/Data/Application`
+	- app dir are under: `/var/mobile/Containers/Data/Application`
+	- apps are under: `/private/var/mobile/Containers/Bundle/Application/xxx-xxx.../<app_name>.app`
+	- To get the excutable of the app:
+	`cd <PATH_TO_APP>/<app_name>.app ;`
+	`plutil -p Info.plist | grep CFBundleExecutable`
+
+- Useful commands:
+	`killall -HUP SpringBoard # Respiring springboard`
+	`su mobile -c uicache # reload ui cache`
 	
-	
+- Tweaky stuff:
+	- Here I used a docker to compile `make package`
+	- Then use iphoneTunnel to handle the forwarding stuff, make sure you also have `$THEOS/bin/itnl` file ready.
+	- `make install`, and the lock screen msg should be changed.
+	- On device, `ondeviceconsole` can be used to print syslog msg, we can use `NSLog` in tweak to do some debugging output.
