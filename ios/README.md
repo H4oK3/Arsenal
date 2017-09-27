@@ -35,7 +35,7 @@ This is the very first time that I am doing IOS app pentest, here I will note im
 	frida-ps -U | ag wechat
 	cycript -p WeChat # device
 	cy# [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0]
-#"file:///var/mobile/Containers/Data/Application/0A620880-8C7E-4F2B-BCC9-46FD9D0CF865/Documents/"
+	#"file:///var/mobile/Containers/Data/Application/0A620880-8C7E-4F2B-BCC9-46FD9D0CF865/Documents/"
 	```
 	
 	- dumpdecrypt it:
@@ -65,10 +65,10 @@ This is the very first time that I am doing IOS app pentest, here I will note im
 	
 	```BASH
 	scp -P 2222 root@localhost:/Developer/usr/bin/debugserver ./
-lipo -thin arm64 debugserver -output debugserver
+	lipo -thin arm64 debugserver -output debugserver
 
- wget http://iosre.com/ent.xml
- ldid -Sent.xml debugserver
+ 	wget http://iosre.com/ent.xml
+ 	ldid -Sent.xml debugserver
 	```
 	
 	- LLDB it
