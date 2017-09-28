@@ -1,9 +1,0 @@
-Package: com.ha0k3.firstwk
-Name: firstwk
-Depends: mobilesubstrate
-Version: 0.0.1
-Architecture: iphoneos-arm
-Description: An awesome MobileSubstrate tweak!
-Maintainer: Hawk3
-Author: Hawk3
-Section: Tweaks

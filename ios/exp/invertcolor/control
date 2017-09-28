@@ -1,0 +1,9 @@
+Package: com.ha0k3.invertcolor
+Name: invertcolor
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: Hao
+Author: Hao
+Section: Tweaks
