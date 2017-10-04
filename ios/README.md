@@ -1,5 +1,6 @@
 This is the very first time that I am doing IOS app pentest, here I will note import things down.
 
+## Generic Prep work
 - SSH to IPhone:
 	- need this tool: iPhoneTunnel.
 	- ssh over usb: ssh `root@localhost -p2222`
@@ -119,3 +120,147 @@ STP: store pare register
 #1 : sp -= 60; mov [sp],x28; sp++; mov [sp],x27
 e.t.c it just created stack space and push those regs into stack
 ```
+
+---
+
+
+## Hack time
+- hack the UI with cycript and reveal
+	- `Reveal` the app
+	- Use `cycript` to look the current UI view and get the button id and so on:
+	
+	
+	```
+	[[UIApp keyWindow] recursiveDescription ].toString() # which will print everything for the current UI view;
+	cy# #"<UIButton: 0x147deac40; frame = (257 337; 37 30); opaque = NO; autoresize = RM+BM; layer = <CALayer: 0x147d1ff00>>"
+
+	cy# [#0x147deac40 setHidden: YES] # now we can test if we hide the button.
+	```
+	**Notice that we need UIButton here, UIButtonLabel is a subview of that button and it is useless.**
+	
+- Find the UI function:
+
+	- Example for `Mail` app `Edit` **button**
+	**Note that UIToolbarButton and UIButton they are different, the method listed below is only for UIToolbarButton**
+		```
+		cycript -p 943 	# hooking the Mail process
+		cy# button=#0x1457c9ab0
+		#"<UIToolbarButton: 0x1457c9ab0; frame = (375 0; 23 44); opaque = NO; gestureRecognizers = <NSArray: 0x146860230>; layer = <CALayer: 0x1457c9830>>"
+		cy#
+		cy# [button allTargets ]
+		[NSSet setWithArray:@[#"<ComposeButtonItem: 0x1457c8f10>"]]]
+		cy# [button allControlEvents ]
+		8192
+		cy# [button actionsForTarget: #0x1457c8f10 forControlEvent: 8192]
+		@["_sendAction:withEvent:"]
+		```
+
+
+	- Example for `Settings` app `Phone` **cell**
+		- Find Controller from View.
+		
+		```
+		# hook the app use cycript -p
+		cy# cell=#0x1381b3a00
+		#"<PSTableCell: 0x1381b3a00; baseClass = UITableViewCell; frame = (0 35; 414 45); text = 'My Number'; autoresize = W; tag = 4; layer = <CALayer: 0x138b24ea0>>"
+		cy# [#0x138a4ffe0 nextResponder]
+		#"<UITableViewCellContentView: 0x138b39f40; frame = (0 0; 414 44.6667); gestureRecognizers = <NSArray: 0x138b04840>; layer = <CALayer: 0x138b32ba0>>"
+		cy# [#0x138b39f40 nextResponder]
+		#"<PSTableCell: 0x1381b3a00; baseClass = UITableViewCell; frame = (0 35; 414 45); text = 'My Number'; autoresize = W; tag = 4; layer = <CALayer: 0x138b24ea0>>"
+		cy# _
+		#"<PSTableCell: 0x1381b3a00; baseClass = UITableViewCell; frame = (0 35; 414 45); text = 'My Number'; autoresize = W; tag = 4; layer = <CALayer: 0x138b24ea0>>"
+		cy# [#0x1381b3a00 nextResponder]
+		#"<UITableViewWrapperView: 0x1379b4600; frame = (0 0; 414 672); gestureRecognizers = <NSArray: 0x1377711b0>; layer = <CALayer: 0x138a007c0>; contentOffset: {0, 0}; contentSize: {414, 672}>"
+		cy# [#0x1379b4600 nextResponder]
+		#"<UITableView: 0x1378fce00; frame = (0 0; 414 736); autoresize = W+H; gestureRecognizers = <NSArray: 0x1375b9a90>; layer = <CALayer: 0x138a7ab00>; contentOffset: {0, -64}; contentSize: {414, 658.33333333333337}>"
+		cy# [#0x1379b4600 nextResponder]
+		#"<UITableView: 0x1378fce00; frame = (0 0; 414 736); autoresize = W+H; gestureRecognizers = <NSArray: 0x1375b9a90>; layer = <CALayer: 0x138a7ab00>; contentOffset: {0, -64}; contentSize: {414, 658.33333333333337}>"
+		cy# [#0x1378fce00 nextResponder]
+		#"<PSListContainerView: 0x138afa600; frame = (0 0; 414 736); autoresize = W+H; layer = <CALayer: 0x138c0bf30>>"
+		cy# [#0x138afa600 nextResponder]
+		#"<PhoneSettingsController 0x138197400: navItem <UINavigationItem: 0x138b16450>, view <UITableView: 0x1378fce00; frame = (0 0; 414 736); autoresize = W+H; gestureRecognizers = <NSArray: 0x1375b9a90>; layer = <CALayer: 0x138a7ab00>; contentOffset: {0, -64}; contentSize: {414, 658.33333333333337}>>"
+
+		# we found PhoneSettingsController by recursively call nextResponder started from the cell id
+		```
+		- Find Module from Controller(Also with a better way of using classdump).
+
+		```
+		jailbroken-6:~ root# grep -r PhoneSettingsController /Applications/Preferences.app/ # returns nothing
+		jailbroken-6:~ root# grep -r PhoneSettingsController /System/Library/ 2>/dev/null	# find it in bundle
+
+		# Back to cycript:
+		[NSBundle loadedBundles ]		# get all loaded bundles
+		bundle=[NSBundle bundleWithPath:@"/System/Library/PreferenceBundles/MobilePhoneSettings.bundle"]
+
+
+		cy# dlopen("/usr/lib/libclassdumpdyld.dylib",RTLD_NOW)
+		(typedef void*)(0x138a84ff0)
+		cy# extern "C" NSString * dumpBundle(NSBundle *aBundle);
+		(extern "C" NSString *dumpBundle(NSBundle *))
+
+		##
+		# Wrap up dumpclass_dylb C functions here
+		extern "C" NSString * dumpClass(Class *aClass);
+		extern "C" NSString * dumpBundle(NSBundle *aBundle);
+		extern "C" NSString * dumpBundleForClass(Class *aClass);
+		##
+
+		# Dump it
+		cy# dumpBundle(bundle)
+		@"Wrote all headers to /tmp/MobilePhoneSettings"
+		
+		# Where is that exact binary(MobilePhoneSettings) located?
+		image list -o -f | grep -i MobilePhoneSettings
+		# This gave me the exact binary of that bundle: 
+		# /Users/hke/Library/Developer/Xcode/iOS DeviceSupport/9.0.1 (13A405)/Symbols/System/Library/PreferenceBundles/MobilePhoneSettings.bundle/MobilePhoneSettings, we can drop this binary in Hopper/Ida.
+
+		```
+
+		- LLDB it( here I will use the example of Settings app).
+		
+		```
+		# address can be calculated via: hex(aslr + addr_in_hopper)
+
+		(lldb) disass -s 0x188d8e99c --count 5
+		MobilePhoneSettings`-[PhoneSettingsController tableView:cellForRowAtIndexPath:]:
+		    0x188d8e99c <+0>:  stp    x24, x23, [sp, #-0x40]!
+		    0x188d8e9a0 <+4>:  stp    x22, x21, [sp, #0x10]
+		    0x188d8e9a4 <+8>:  stp    x20, x19, [sp, #0x20]
+		    0x188d8e9a8 <+12>: stp    x29, x30, [sp, #0x30]
+		    0x188d8e9ac <+16>: add    x29, sp, #0x30            ; =0x30
+		(lldb) br s -a 0x188d8eae4
+		Breakpoint 1: where = MobilePhoneSettings`-[PhoneSettingsController tableView:cellForRowAtIndexPath:] + 328, address = 0x0000000188d8eae4
+		(lldb) c
+		Process 1030 resuming
+		Process 1030 stopped
+		+ thread #1, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+		    frame #0: 0x0000000188d8eae4 MobilePhoneSettings`-[PhoneSettingsController tableView:cellForRowAtIndexPath:] + 328
+		MobilePhoneSettings`-[PhoneSettingsController tableView:cellForRowAtIndexPath:]:
+		->  0x188d8eae4 <+328>: sub    sp, x29, #0x30            ; =0x30
+		    0x188d8eae8 <+332>: ldp    x29, x30, [sp, #0x30]
+		    0x188d8eaec <+336>: ldp    x20, x19, [sp, #0x20]
+		    0x188d8eaf0 <+340>: ldp    x22, x21, [sp, #0x10]
+		Target 0: (Preferences) stopped.
+
+		# On device, goto settings -> phone -> observe output in lldb
+
+		(lldb) po $x0
+		<PSTableCell: 0x1378da200; baseClass = UITableViewCell; frame = (0 0; 320 44); text = 'My Number'; tag = 4; layer = <CALayer: 0x138e10950>>
+
+		(lldb) po [$x0 subviews]
+		<__NSArrayM 0x1377d1790>(
+		<UITableViewCellContentView: 0x1375a1c30; frame = (0 0; 320 44); gestureRecognizers = <NSArray: 0x1375ce200>; layer = <CALayer: 0x1377f00b0>>
+		)
+
+		(lldb) po [$x0 detailTextLabel]
+		<UITableViewLabel: 0x138aea820; frame = (0 0; 0 0); text = 'Unknown'; userInteractionEnabled = NO; layer = <_UILabelLayer: 0x1375dc4a0>>
+
+		# Bingo, we have found our 'Unknown', which means we are in correct UIfunction.
+		```
+
+
+
+
+
+
+
