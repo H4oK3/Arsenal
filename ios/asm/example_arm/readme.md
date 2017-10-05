@@ -1,0 +1,4 @@
+- To cross compile binary for ios:
+    - We need an iphoneOS sdk in advance.
+    - ` clang -arch arm64 -isysroot `xcrun --sdk iphoneos --show-sdk-path` -o main.bin main.m   //sysroot here need to be the path to the sdk to use`
+    - After scp the binary to the phone, we need to handle the signature stuff by simply doing: `ldid -S ./main64`

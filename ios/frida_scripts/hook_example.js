@@ -30,7 +30,6 @@ Interceptor.attach(sendMessage.implementation, {
 
     var arg1 = ObjC.Object(args[2]);
     var arg2 = ObjC.Object(args[3]);
-    var classname_1 = object_getClassName(arg1)
     console.log("\n[SBScreenFlash flashColor arg1: " + arg1.toString() + "\nclassname: " + classname_1.toString()+ "\"]");
   }
 });

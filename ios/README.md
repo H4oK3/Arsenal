@@ -1,5 +1,13 @@
 This is the very first time that I am doing IOS app pentest, here I will note import things down.
 
+## Knowledge tree
+- What is MVC?
+	*A model stores data that is retrieved according to commands from the controller and displayed in the view.*
+
+	*A view generates new output to the user based on changes in the model.*
+	
+	*A controller can send commands to the model to update the model's state (e.g., editing a document). It can also send commands to its associated view to change the view's presentation of the model (e.g., scrolling through a document, movement of document)*
+
 ## Generic Prep work
 - SSH to IPhone:
 	- need this tool: iPhoneTunnel.
