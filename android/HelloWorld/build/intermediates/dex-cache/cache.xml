@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
+        jar="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="7e21bd8453cfeda2b83e2e57634485deed0e6347">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c85a07cd7977a2a04e1ea89238e406acd3841e3c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_aaefe221b5b34a1a31e5fb0b2f2bc8fa3511cf6a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="2a22d62f9e8184f3cd1bba3feaff0ef7a4a425e1">
-        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c85a07cd7977a2a04e1ea89238e406acd3841e3c/classes.dex" />
     </item>
 
 </items>

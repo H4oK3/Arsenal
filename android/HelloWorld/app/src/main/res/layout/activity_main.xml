@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ha0k3.helloworld.MainActivity">
+    tools:context="com.ha0k3.helloworld.MainActivity"
+    android:weightSum="1">
 
     <Button
         android:id="@+id/button"
@@ -52,15 +53,31 @@
         android:text="start_export"/>
 
 
-
     <EditText
         android:id="@+id/editText"
-        android:layout_width="48dp"
-        android:layout_height="315dp"
+        android:layout_width="308dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/edit_message"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="35dp"/>
+
+    <Button
+        android:id="@+id/write_to_internal_file"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:onClick="write_to_internal_ext_file"
+        android:text="write_to_internal_and_external_file"
+        android:layout_weight="0.40"/>
+
+    <Button
+        android:id="@+id/delete_file"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.29"
+        android:onClick="delete_internal_and_external_file"
+        android:text="delete_internal_and_external_file"/>
+
 
 </LinearLayout>

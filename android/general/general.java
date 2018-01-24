@@ -27,3 +27,7 @@ String name = intent.getStringExtra(MainActivity.NAME_KEY);
 		android:value=".MainActivity"
 		/>
 </activity>
+
+
+
+
