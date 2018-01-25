@@ -1,6 +1,7 @@
 package com.ha0k3.helloworld;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -19,9 +20,18 @@ import android.widget.Toast;
 
 import com.ha0k3.helloworld.database.DBHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import okhttp3.CertificatePinner;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_MESSAGE = "com.ha0k3.helloworld.MESSAGE";
@@ -40,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MyService.MyBinder myBinder;
 
     SQLiteDatabase database;
+
+    public static final String message = "haottp message";
+    public static final String TAG = "HelloWorld";
 
     public native String helloJni();
 
@@ -219,5 +232,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void ViewJniMessage(View view) {
         Toast.makeText(this, helloJni(), Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void showMessage() {
+        Context mContext = getApplicationContext();
+        Toast.makeText(mContext, MainActivity.message, Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void sendRequest() {
+        String hostname = "httpbin.org";
+        CertificatePinner certificatePinner = new CertificatePinner.Builder()
+                .add(hostname, "sha256/eNUCUIICJFyIEMWKm3xWC6cGIdU85adfJhf7CavratE=")
+                .build();
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .certificatePinner(certificatePinner)
+                .build();
+
+        Request request = new Request.Builder()
+                .url("https://" + hostname + "/headers")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            ResponseBody body = response.body();
+            if(body != null) {
+                String bodyData = body.string();
+                JSONObject bodyJSON = new JSONObject(bodyData);
+
+                Log.d(TAG, bodyJSON.toString(4));
+            }
+        } catch (IOException|JSONException e) {
+            Log.e(TAG, null, e);
+        }
+    }
+
+    public void SendRequest(View view) {
+        showMessage();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendRequest();
+            }
+        });
+        thread.start();
     }
 }

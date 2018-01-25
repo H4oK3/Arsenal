@@ -20,6 +20,15 @@
         <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_8210469af9c0abd20e52a15bae82803aff34f757.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="/Users/hke/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/3.5.0/94c11f915bfe1aeaa5ef6351ddfbe58bae1ea397/logging-interceptor-3.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="94c11f915bfe1aeaa5ef6351ddfbe58bae1ea397">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10/logging-interceptor-3.5.0_218f969428a1bace50f71f35d19188bc81a23ad9/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/Users/hke/.android/build-cache/c441edb1e6debb8f73f8815c9f741419d7f3ba8e/output/jars/classes.jar"
         jumboMode="false"
@@ -92,6 +101,24 @@
         <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/constraint-layout-solver-1.0.2_0e6618e4d3cdec4e7ec296b1aac8ae4afed976e5.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="/Users/hke/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.5.0/4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83/okhttp-3.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.5.0_3b089c9ad6d225a85e0da4ac76eddf6ac88f6f7f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hke/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.11.0_72d9846fed67602ff8d3e56a916cfd929e86cb5d/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/Users/hke/.android/build-cache/ebd0bc3a8dc09a288180af45320c6e4cdfd4291e/output/jars/classes.jar"
         jumboMode="false"
@@ -128,6 +155,15 @@
         <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_16091e8521e739a8086b40c8078323db673955a2.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="ba9e26088a318435d4c55de51745246d547c0587">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c85a07cd7977a2a04e1ea89238e406acd3841e3c/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/Users/hke/.android/build-cache/fc12686ddb5bf04dd66fbd99391c6ddaf8411b2c/output/jars/classes.jar"
         jumboMode="false"
@@ -135,15 +171,6 @@
         revision="26.0.1"
         sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
         <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_e753974a8f6ac601366e01f6a562f4ff3798b75a.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="7e21bd8453cfeda2b83e2e57634485deed0e6347">
-        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c85a07cd7977a2a04e1ea89238e406acd3841e3c/classes.dex" />
     </item>
 
 </items>

@@ -86,5 +86,12 @@
         android:onClick="ViewJniMessage"
         android:text="ViewJniMessage"/>
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:onClick="SendRequest"
+        android:text="SendRequest"/>
+
 
 </LinearLayout>
