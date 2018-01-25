@@ -4,6 +4,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.ha0k3.helloworld.database.DBHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,6 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button unbindService;
     private MyService.MyBinder myBinder;
 
+    SQLiteDatabase database;
+
+    public native String helloJni();
+
+    static {
+        System.loadLibrary("JniTest");
+    }
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceDisconnected(ComponentName name) {
@@ -52,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SQLiteOpenHelper dbHelper = new DBHelper(this);
+        database = dbHelper.getWritableDatabase();  //will call onCreate if db not exist
+        Toast.makeText(this, "Database acquired", Toast.LENGTH_SHORT).show();
 
         startService = (Button)findViewById(R.id.start_service);
         stopService = (Button)findViewById(R.id.stop_service);
@@ -73,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             Toast.makeText(this, "Msg is blank", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private File getFile(){
@@ -200,5 +216,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.i(Exception_TAG, "file delete failed: " + extfile.getAbsolutePath());
             e.printStackTrace();
         }
+    }
+    public void ViewJniMessage(View view) {
+        Toast.makeText(this, helloJni(), Toast.LENGTH_SHORT).show();
     }
 }

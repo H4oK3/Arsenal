@@ -73,3 +73,23 @@ Also, [this blog](http://blog.csdn.net/guolin_blog/article/details/11952435/) is
     }
 	~~~
 	
+	+ Database operations:
+	database file location: `/data/data/com.ha0k3.helloworld/databases/database.db`
+	
+	`public class DBHelper extends SQLiteOpenHelper`: Database operations class; all db operations has to be done by using DBHelper object;
+	
+	~~~JAVA
+	// Then this can be used to get the descriptor of the database
+	SQLiteOpenHelper dbHelper = new DBHelper(this);
+	database = dbHelper.getWritableDatabase();  //will call onCreate if db not exist
+	~~~
+	
+	A good programming behavior is to store all necessary SQL query in a constant java file and access it via:
+	`database.execSQL(SQLConstant.SQL_DELETE);`
+	
+	
+	+ Simple JNI implementation:
+	check the `jni` folder for details; 
+	`ndk-build` in the jni dir will build the .so files; copy them into a folder under app/src/main will do.
+	
+	

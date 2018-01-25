@@ -79,5 +79,12 @@
         android:onClick="delete_internal_and_external_file"
         android:text="delete_internal_and_external_file"/>
 
+    <Button
+        android:id="@+id/JNI"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:onClick="ViewJniMessage"
+        android:text="ViewJniMessage"/>
+
 
 </LinearLayout>
