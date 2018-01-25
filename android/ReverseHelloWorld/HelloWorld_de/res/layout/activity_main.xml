@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:weightSum="1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Button android:id="@id/button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/button_send" android:onClick="sendMessage" />
+    <Button android:id="@id/start_service" android:layout_width="88.0dip" android:layout_height="wrap_content" android:text="Start Service" android:onClick="startService_main" />
+    <Button android:id="@id/stop_service" android:layout_width="88.0dip" android:layout_height="wrap_content" android:text="Stop Service" android:onClick="stopService_main" />
+    <Button android:id="@id/bind_service" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Bind Service" />
+    <Button android:id="@id/unbind_service" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Unbind Service" />
+    <Button android:id="@id/start_export" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="start_export" android:onClick="start_export" />
+    <EditText android:id="@id/editText" android:layout_width="308.0dip" android:layout_height="wrap_content" android:text="@string/edit_message" android:ems="10" android:inputType="textPersonName" />
+    <Button android:id="@id/write_to_internal_file" android:layout_width="338.0dip" android:layout_height="wrap_content" android:text="write_to_internal_and_external_file" android:layout_weight="0.4" android:onClick="write_to_internal_ext_file" />
+    <Button android:id="@id/delete_file" android:layout_width="338.0dip" android:layout_height="wrap_content" android:text="delete_internal_and_external_file" android:layout_weight="0.29" android:onClick="delete_internal_and_external_file" />
+    <Button android:id="@id/JNI" android:layout_width="334.0dip" android:layout_height="wrap_content" android:text="ViewJniMessage" android:onClick="ViewJniMessage" />
+</LinearLayout>

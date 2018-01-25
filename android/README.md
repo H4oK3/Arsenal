@@ -2,6 +2,7 @@
 A simple Android app helps me understand how it works.
 
 **Some generic notes**
+
 ~~~
 Patch apk and sign it again
 apktool d UnCrackable-Level2.apk
@@ -13,9 +14,55 @@ zipalign -v 4 ./dist/UnCrackable-Level2.apk patch.apk
 
 #Sign it
 jarsigner -verbose -keystore ~/.android/debug.keystore patch.apk androiddebugkey
-# Note Keystore password is `android`, key alias is `androiddebugkey` and key password again `android`.
+#Note Keystore password is `android`, key alias is `androiddebugkey` and key password again `android`.
 
 ~~~
+
+**Little smali Notes**
+
+~~~
+# System.loadLibrary("JNIDecrypt");
+.method static constructor <clinit>()V
+    .locals 1
+
+    .prologue
+    .line 47
+    const-string v0, "JNIDecrypt"
+
+    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+
+    .line 48
+    return-void
+.end method
+~~~
+
+~~~
+# public native byte[] mydecryto(final byte[] array, final String s)
+# jbyteArray mydecryto(JNIEnv *env, jobject jclazz, jbyteArray paramArrayOfByte, jstring paramString)
+.method public native mydecryto([BLjava/lang/String;)[B
+.end method
+~~~
+
+- `invoke-static` 是类静态方法的调用，编译时，静态确定的；
+- `invoke-virtual` 虚方法调用，调用的方法运行时确认实际调用，和实例引用的实际对象有关，动态确认的，一般是带有修饰符protected或public的方法；
+- `invoke-direct{param1, param2},Caller;->func_name(Param_type)Ret_type;`; param1 usually is `this`
+
+~~~
+getSharedPreferences("mypref", MODE_PRIVATE).edit();
+
+
+				||
+				VV
+const-string v4, "mypref"
+
+const/4 v5, 0x0
+
+invoke-virtual {p0, v4, v5}, Lcom/ha0k3/helloworld/MainActivity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+
+move-result-object v4	
+~~~
+
+
 
 **prep_android**
 
@@ -96,6 +143,7 @@ setImmediate(function() { //prevent timeout
 
 
   + JNI hooking example(strncmp), also check the crackme writeup for details under this repo:
+  
   ~~~
   var strncmp = undefined;
       imports = Module.enumerateImportsSync("libfoo.so");
