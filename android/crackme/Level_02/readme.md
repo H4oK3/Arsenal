@@ -12,7 +12,7 @@ apktool d UnCrackable-Level2.apk
 zipalign -v 4 ./dist/UnCrackable-Level2.apk patch.apk
 
 #Sign it
-`jarsigner -verbose -keystore ~/.android/debug.keystore patch.apk androiddebugkey`
+jarsigner -verbose -keystore ~/.android/debug.keystore patch.apk androiddebugkey
 # Note Keystore password is `android`, key alias is `androiddebugkey` and key password again `android`.
 
 ~~~

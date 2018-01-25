@@ -11,13 +11,40 @@
         <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.2.4_d0ce76b63ce905fbab3c5d385c8e1b8692010f19/classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/2a8a348f8fc2a007200a79f46e43c0ba63334bab/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="7e21bd8453cfeda2b83e2e57634485deed0e6347">
-        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c85a07cd7977a2a04e1ea89238e406acd3841e3c/classes.dex" />
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_8210469af9c0abd20e52a15bae82803aff34f757.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/c441edb1e6debb8f73f8815c9f741419d7f3ba8e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_2a7c72676ebe33984624af9fbb55298d1e3076df.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/gson-2.2.4_d0ce76b63ce905fbab3c5d385c8e1b8692010f19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/284dbfeb90e020381d6b863e6fb2c47571325557/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_0021bf59cd5651d5277fc7af3d389ed59a790778.jar" />
     </item>
     <item
         is-multidex="true"
@@ -27,6 +54,96 @@
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_aaefe221b5b34a1a31e5fb0b2f2bc8fa3511cf6a/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/aad466799655f58139ce08d60a67b9072cc80cb8/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_f9a513ed64b2c5bbf3cfb8377a7040e8d0904526.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/5f8b1cf0446aea8836019784948992c9a5915908/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_81aec5da15f28af3549304d555012292f93cdf3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/26.0.0-alpha1/support-annotations-26.0.0-alpha1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/support-annotations-26.0.0-alpha1_7c557c0c37a1ceaab0ad0017487e453f11f2e2d1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/constraint-layout-solver-1.0.2_0e6618e4d3cdec4e7ec296b1aac8ae4afed976e5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/ebd0bc3a8dc09a288180af45320c6e4cdfd4291e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_afe476f2cd3c20170919b40da4484bec80486cbd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/5396c9f03b9f298661041d0b7b312f431e87eaf8/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_e1e9065e97af960f86c91d581440464f058eb429.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/60697c25f03b763e609697675f898fa39eec7d88/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_a7589dcfcb264cb590f0b703eace6b8bca5effcb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/389c1f005a403a1d508cd89166a9505c6d6a4931/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_16091e8521e739a8086b40c8078323db673955a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/hke/.android/build-cache/fc12686ddb5bf04dd66fbd99391c6ddaf8411b2c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/pre-dexed/release/classes_e753974a8f6ac601366e01f6a562f4ff3798b75a.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="7e21bd8453cfeda2b83e2e57634485deed0e6347">
+        <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c85a07cd7977a2a04e1ea89238e406acd3841e3c/classes.dex" />
     </item>
 
 </items>

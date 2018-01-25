@@ -1,6 +1,22 @@
 **HelloWorld**
 A simple Android app helps me understand how it works.
 
+**Some generic notes**
+~~~
+Patch apk and sign it again
+apktool d UnCrackable-Level2.apk
+
+#    invoke-direct {p0}, Lsg/vantagepoint/uncrackable2/MainActivity;->init()V `
+#    invoke-static {v0}, Ljava/lang/System;->exit(I)V`
+
+zipalign -v 4 ./dist/UnCrackable-Level2.apk patch.apk
+
+#Sign it
+jarsigner -verbose -keystore ~/.android/debug.keystore patch.apk androiddebugkey
+# Note Keystore password is `android`, key alias is `androiddebugkey` and key password again `android`.
+
+~~~
+
 **prep_android**
 
 A simple bash program to get apk decompiled and reversed.
