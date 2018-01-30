@@ -50,8 +50,14 @@
         android:layout_width="match_parent"
         android:onClick="start_export"
         android:layout_height="wrap_content"
-        android:text="start_export"/>
+        android:text="start_export_jonny5"/>
 
+    <Button
+        android:id="@+id/start_export_diva"
+        android:layout_width="match_parent"
+        android:onClick="start_diva_activity"
+        android:layout_height="wrap_content"
+        android:text="start_export_diva"/>
 
     <EditText
         android:id="@+id/editText"

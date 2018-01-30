@@ -278,4 +278,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         thread.start();
     }
+
+    public void start_diva_activity(View view) {
+//        adb shell am start -n jakhar.aseem.diva/.APICredsActivity
+        Toast.makeText(MainActivity.this, "Trying to start diva activity!",
+                Toast.LENGTH_LONG).show();
+        Intent intent = new Intent();
+        intent.setAction("jakhar.aseem.diva.action.VIEW_CREDS");
+        startActivity(intent);
+    }
 }
