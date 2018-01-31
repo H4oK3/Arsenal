@@ -1,7 +1,7 @@
 - This POST contains a descriptive method of how I solve [DIVA](https://github.com/payatu/diva-android);
 
 **General**:
-The app was easy to reverse since it hasn't been really zipped of obfuscated.
+The app was easy to reverse since it hasn't been really zipped or obfuscated.
 
 `prep_android diva_beta.apk`
 
@@ -22,7 +22,7 @@ I did this to track down each activities and functions:
 Log.e("diva-log", "Error while processing transaction with credit card: " + ((EditText)view).getText().toString());
 ~~~
 
-2. HardCode secret.
+2. HardCoded secret.
 
 ~~~JAVA
 // HardcodeActivity.access
@@ -278,7 +278,7 @@ int Java_jakhar_aseem_diva_DivaJni_initiateLaunchSequence(int arg0) {
     return r0;
 }
 ~~~
-If buffer exceeds 20; it would cause buffer overflow; also same approach used for Level 12 can be used here to get the secret key.
+If buffer size exceeds 20; it would cause buffer overflow; also same approach used for Level 12 can be used here to get the secret key.
 
 
 
