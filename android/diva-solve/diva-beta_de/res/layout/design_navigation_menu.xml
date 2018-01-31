@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.internal.NavigationMenuView android:id="@id/design_navigation_view" android:paddingTop="@dimen/design_navigation_padding_top_default" android:paddingBottom="@dimen/design_navigation_padding_bottom" android:scrollbars="vertical" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:listSelector="?selectableItemBackground" android:divider="@null" app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" />

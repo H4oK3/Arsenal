@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textColor="@color/material_grey_600" android:gravity="fill" android:id="@id/ivi3textView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ivi3_intro" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:textAlignment="gravity" android:layout_alignParentStart="true" />
+    <EditText android:id="@id/ivi3CodeText" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/ivi3_enter" android:ems="10" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:inputType="text" android:textAlignment="center" android:layout_alignParentStart="true" />
+    <Button android:id="@id/ivi3button" android:background="#ffff0000" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ivi3_stop" android:layout_below="@id/ivi3CodeText" android:layout_alignParentLeft="false" android:layout_centerHorizontal="true" android:onClick="push" android:layout_alignParentStart="false" />
+</RelativeLayout>

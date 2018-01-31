@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textColor="@color/material_grey_600" android:gravity="fill" android:id="@id/aci1textView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/aci1_intro" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:textAlignment="gravity" android:layout_alignParentStart="true" />
+    <Button android:id="@id/aci1button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/aci1_view" android:layout_centerHorizontal="true" android:layout_centerVertical="true" android:onClick="viewAPICredentials" />
+</RelativeLayout>
