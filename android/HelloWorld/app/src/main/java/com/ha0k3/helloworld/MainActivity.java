@@ -242,9 +242,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void sendRequest() {
-        String hostname = "httpbin.org";
+//        String hostname = "httpbin.org";
+        String hostname = "circle.com";
         CertificatePinner certificatePinner = new CertificatePinner.Builder()
-                .add(hostname, "sha256/eNUCUIICJFyIEMWKm3xWC6cGIdU85adfJhf7CavratE=")
+//                .add(hostname, "sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+                  .add(hostname,"sha256/HCDU/5saOGpZ7R9/WOvLfIjSQeLUTaPrmc9wbL6zhxg=")
+//                .add(hostname,"sha1/LHspp8BlMzJeqfRrY/MmhzxEa3Q=")
+//                .add(hostname,"sha1/UbxPdxcIz+UJ3enqpVSOkcBneFM=")
+//                .add(hostname,"")
                 .build();
 
         OkHttpClient client = new OkHttpClient.Builder()
