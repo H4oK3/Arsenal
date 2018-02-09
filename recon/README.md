@@ -27,6 +27,7 @@ use recon/domains-hosts/shodan_hostname
 add companies
 use recon/domains-hosts/shodan_org
 
+# site:ipinfo.io company.com  will get netblock info
 recon/netblocks-hosts/shodan_net
 recon/netblocks-ports/censysio  # enumerate ports info
 ~~~
@@ -70,6 +71,19 @@ run
 
 ./EyeWitness.py -f <file_path> --web
 ~~~
+
+
+##MIsc
+- dirb stuff
+~~~
+use discovery/info_disclosure/interesting_files     # will generate traffic
+run
+~~~
+
+- Stealth dirb
+<https://hackertarget.com/extract-links/>
+
+
 
 
 
