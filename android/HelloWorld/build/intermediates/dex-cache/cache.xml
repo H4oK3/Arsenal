@@ -160,7 +160,7 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="ba9e26088a318435d4c55de51745246d547c0587">
+        sha1="cc6063cc48060113f551fe34bff4989b843d58e1">
         <dex dex="/Users/hke/data/git/Arsenal/android/HelloWorld/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c85a07cd7977a2a04e1ea89238e406acd3841e3c/classes.dex" />
     </item>
     <item

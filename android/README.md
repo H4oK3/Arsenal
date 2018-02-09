@@ -246,6 +246,13 @@ setImmediate(function() { //prevent timeout
       }
       console.log("[*] onClick handler modified")
 
+      var clazzIntent = Java.use("android.content.Intent");   //hook putExtra to log all intents
+      clazzIntent.putExtra.overload('java.lang.String', 'java.lang.String').implementation = function(arg1,arg2){
+        console.log(arg1.toString() + " : " + arg2.toString());
+        retval = this.putExtra(arg1,arg2);
+        return retval;
+      }
+
     })
 })
 ~~~
@@ -286,6 +293,10 @@ setImmediate(function() { //prevent timeout
         console.log("[*] Intercepting strncmp");
     });
   });
+
+
+  getPhrase = Module.findExportByName("libnative-lib.so","Java_com_flagstore_ctf_flagstore_CTFReceiver_getPhrase");   // Export Func
+
   ~~~
   
   [About Interceptor](https://www.frida.re/docs/javascript-api/#interceptor)

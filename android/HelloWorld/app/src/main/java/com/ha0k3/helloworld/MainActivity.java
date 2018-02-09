@@ -1,8 +1,10 @@
 package com.ha0k3.helloworld;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bindService;
     private Button unbindService;
     private MyService.MyBinder myBinder;
+    private BroadcastReceiver br;
 
     SQLiteDatabase database;
 
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences prefs = getSharedPreferences(MainActivity.MYPREF, MODE_PRIVATE);
         String msg = prefs.getString(MSG_PAYLOAD,"KEY_NOT_FOUND");
 
+
         if(!TextUtils.isEmpty(msg)){
             EditText et = (EditText) findViewById(R.id.editText);
             et.setText(msg);
@@ -101,6 +105,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             Toast.makeText(this, "Msg is blank", Toast.LENGTH_SHORT).show();
         }
+
+        // Broadcast Receiver
+        br = new MyReceiver();
+        IntentFilter filter = new IntentFilter("com.flagstore.ctf.OUTGOING_INTENT");
+        registerReceiver(br,filter);
 
     }
 
