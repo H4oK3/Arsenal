@@ -53,7 +53,8 @@ This is the very first time that I am doing IOS app pentest, here I will note im
 	cd /var/mobile/Containers/Data/Application/0A620880-8C7E-4F2B-BCC9-46FD9D0CF865/Documents # this is necessary, dumpdecrypt has the same priv as the target app(wechat), and target app(storeapp) can only write file into its own sandbox, a.k.a the document file here.
 	
 	cp ~/dumpdecrypted_arm64.dylib .
-	/var/mobile/Containers/Data/Application/0A620880-8C7E-4F2B-BCC9-46FD9D0CF865/Documents root# DYLD_INSERT_LIBRARIES=dumpdecrypted_arm64.dylib /var/mobile/Containers/Bundle/Application/D86F3ECE-F894-40FC-930D-914C70563CE5/WeChat.app/WeChat
+	/var/mobile/Containers/Data/Application/0A620880-8C7E-4F2B-BCC9-46FD9D0CF865/Documents 
+	root# DYLD_INSERT_LIBRARIES=dumpdecrypted_arm64.dylib /var/mobile/Containers/Bundle/Application/D86F3ECE-F894-40FC-930D-914C70563CE5/WeChat.app/WeChat decrypt dumper
 	```
 
 
