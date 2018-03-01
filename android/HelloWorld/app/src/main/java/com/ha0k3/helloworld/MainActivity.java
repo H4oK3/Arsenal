@@ -150,9 +150,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("Message_TAG: uri = ", uri.toString());
 
         Intent intent = new Intent();
-//        ComponentName cn=new ComponentName("com.squarespace.android.note.ui.activity","com.squarespace.android.note.ui.activity.StartActivity");
-        //        ComponentName cn = new ComponentName("com.squarespace.android.zendesk", "com.squarespace.android.zendesk/.ZendeskActivity");
-//        intent.setClassName("com.squarespace.android.note","ui.activity.StartActivity");
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         intent.setAction("android.intent.action.SEND");
@@ -200,8 +197,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.LENGTH_LONG).show();
         Intent intent = new Intent();
         ComponentName cn=new ComponentName("com.nccgroup.johnnyfive", "com.nccgroup.johnnyfive.AdminActivity");
-//        ComponentName cn=new ComponentName("com.squarespace.android.note.ui.activity","com.squarespace.android.note.ui.activity.StartActivity");
-//        ComponentName cn = new ComponentName("com.squarespace.android.zendesk", "com.squarespace.android.zendesk/.ZendeskActivity");
         intent.setComponent(cn);
         startActivity(intent);
     }
