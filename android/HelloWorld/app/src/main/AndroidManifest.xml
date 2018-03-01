@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -28,16 +30,44 @@
 
         <activity android:name=".IntentReceiver">
             <intent-filter>
-                <action android:name="com.flagstore.ctf.OUTGOING_INTENT"/>
+                <!--<action android:name="com.flagstore.ctf.OUTGOING_INTENT"/>-->
 
+                <!--<category android:name="android.intent.category.DEFAULT"/>-->
+
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:scheme="https"
+                    android:host="www.dropbox.com"
+                    />
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="com.ha0k3.helloworld.FileProvider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_SCANNER_SCAN_FILE" >
+                </action>
+                <data
+                    android:scheme="content"
+                    android:path="media/external/images/media/"
+                    android:mimeType="image/jpg"
+                    />
+            </intent-filter>
+
+
+            <!--<scheme>://<host>:<port>[<path>|<pathPrefix>|<pathPattern>]-->
         </receiver>
     </application>
 

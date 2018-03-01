@@ -1,6 +1,7 @@
 package com.ha0k3.helloworld;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +17,9 @@ public class IntentReceiver extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String msg = intent.getStringExtra("msg");
+//        String msg = intent.getStringExtra("msg");
+        Uri data = intent.getData();
 
-        Log.d(TAG, "IntentReceiver: " + msg);
+        Log.d(TAG, "IntentReceiver: Called with data" + data.toString() );
     }
 }

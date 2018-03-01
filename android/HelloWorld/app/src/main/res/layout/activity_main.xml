@@ -14,6 +14,24 @@
     android:weightSum="1">
 
     <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="share"
+        android:text="Share"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="315dp"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="showWebView"
+        android:text="webview"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="315dp"/>
+
+    <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
