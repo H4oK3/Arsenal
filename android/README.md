@@ -18,6 +18,23 @@ jarsigner -verbose -keystore ~/.android/debug.keystore patch.apk androiddebugkey
 
 ~~~
 
+**Cert Pinning?**
+Look for some generic ones, e.g. okhttp3, x509, etc.
+
+~~~JAVA
+TrustManager tm[] = {new PinningTrustManager(some_hash)};
+~~~
+
+~~~BASH
+# Get server hash:
+openssl s_client -connect host:port | openssl x509 -pubkey -noout > /tmp/cert.text
+cat /tmp/cert.text |  sed '/^-/d' | awk '{printf "%s", $1}' | shasum -a 256
+
+# Get our own hash
+openssl x509 -inform der -in cacert.der -out burp.pem
+cat burp.pem | shasum -a 256
+~~~
+
 **Notes about webview:**
 ~~~
 webview.load(url);
