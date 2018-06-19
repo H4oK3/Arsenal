@@ -1,5 +1,4 @@
 #! /bin/sh
-# A simple script to prep u for android reversing
 if [[ -n "$1" ]]
 then
     file="$1"
@@ -12,10 +11,10 @@ then
             echo "$file_name exists"
         else
             apktool d "$1" -o $file_name
-            unzip -p $file classes.dex > $file_name/classes.dex
-            cd $(PWD)/$file_name
-            d2j-dex2jar.sh classes.dex
-            java -jar ~/data/bin/procyon.jar -o src -ss classes-dex2jar.jar
+            unzip $file -d $file_name/dex/
+            mkdir -p $(PWD)/$file_name/jar && cd $(PWD)/$file_name/jar
+            d2j-dex2jar.sh ../dex/classes*.dex
+            java -jar ~/data/bin/procyon.jar -o ../src -ss ./classes*-dex2jar.jar
         fi
     else
         echo "$file not exists"

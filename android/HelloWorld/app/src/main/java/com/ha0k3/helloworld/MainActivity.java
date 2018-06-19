@@ -394,4 +394,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         webview.loadDataWithBaseURL("file:///bla/bla/bla", data, "text/HTML", "UTF-8", null);
 //        webview.loadUrl("file:///etc/hosts");
     }
+
+    public void littest(View view) {
+        if (isLit(7331)){
+            Toast.makeText(this, "Congratz! You are 1337", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Try harder, 7331", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean isLit(int i) {
+        if (i == 1337) {
+            return true;
+        }
+        return false;
+    }
 }

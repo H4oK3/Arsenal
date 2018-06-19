@@ -7,6 +7,14 @@ This is the very first time that I am doing IOS app pentest, here I will note im
 	*A view generates new output to the user based on changes in the model.*
 	
 	*A controller can send commands to the model to update the model's state (e.g., editing a document). It can also send commands to its associated view to change the view's presentation of the model (e.g., scrolling through a document, movement of document)*
+	
+- Sign? Provision Profile? Entitlements?
+	* This blog is helpful: <https://wereadteam.github.io/2017/03/13/Signature/>.
+	* In short, device would verify if an app is signed by apple or verified apple developer's public. **Entitlements** contains configurations about a bunch of permissions, this is on the developer's side. A **Provision Profile** or **embedded.mobileprovision** contains that entitlements and a bunch of other important information, and it is zipped in the ipa and installed on each device, it is on our side.
+	
+	  Use `security cms -Di embedded.mobileprovision` to check certain field. 
+	  
+	  To re-sign the ipa, we can use [node-applesign](https://github.com/nowsecure/node-applesign). Or using `ldid` for pseudo-signing.
 
 ## Generic Prep work
 - SSH to IPhone:
@@ -25,7 +33,7 @@ This is the very first time that I am doing IOS app pentest, here I will note im
 	plutil -convert xml1 Info.plist 
 	
 	# re-zip the file with .ipa as ext
-	zip -r Payload app.ipa
+	zip -r app.ipa Payload 
 	scp -P 2222 app.ipa root@localhost:/tmp/
 	ipainstaller /tmp/app.ipa
 	```
