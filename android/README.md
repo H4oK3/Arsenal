@@ -33,6 +33,8 @@ cat /tmp/cert.text |  sed '/^-/d' | awk '{printf "%s", $1}' | shasum -a 256
 # Get our own hash
 openssl x509 -inform der -in cacert.der -out burp.pem
 cat burp.pem | shasum -a 256
+
+# 9451fad31721a78d103918cbb5ac08e8fe3c261ce4da47c0044ba7065893450c
 ~~~
 
 **Notes about webview:**
