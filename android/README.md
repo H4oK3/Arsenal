@@ -37,7 +37,23 @@ cat burp.pem | shasum -a 256
 # 9451fad31721a78d103918cbb5ac08e8fe3c261ce4da47c0044ba7065893450c
 ~~~
 
+
+**Notes about symlink file leakage**
+If the app does this:
+Take URI scheme or file path to do copy or backup stuff:
+e.g. Target App(TA) takes file name and path and copy it to external storage; it might use several checks such as: file path cannot contain app folder name.
+
+This can be exploit using symlink technique:
+In a malicious app, do this:
+
+- Make a symlink file in current app dir pointing to target file;
+- chmod 777 on this file(so TA can access this file), supply this file to TA.
+- TA would happily accept the symlink and make a copy of target file in external storage.
+
+This blog: <https://hackerone.com/reports/161710> is a great example.
+
 **Notes about webview:**
+
 ~~~
 webview.load(url);
 webview.loadDataWithBaseURL(url, data, "text/HTML", "UTF-8", null);
