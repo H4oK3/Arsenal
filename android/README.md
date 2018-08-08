@@ -37,6 +37,31 @@ cat burp.pem | shasum -a 256
 # 9451fad31721a78d103918cbb5ac08e8fe3c261ce4da47c0044ba7065893450c
 ~~~
 
+**Notes about URI Scheme**
+
+~~~XML
+<intent-filter>
+    <data
+        android:host=<HOST>
+        android:scheme=<SCHEME>/>
+
+    <action android:name="android.intent.action.VIEW" />
+
+    <category android:name="android.intent.category.BROWSABLE" />
+    <category android:name="android.intent.category.DEFAULT" />
+</intent-filter>
+
+~~~
+
+
+`intent://Host/#Intent;scheme={{scheme}};package={{packagename}};S.browser_fallback_url=https://www.google.com;end`
+
+**Note**: If the activity is not exported, the browser cannot lauch it via intent protocol.
+
+~~~
+adb shell am start -a {{ACTION}} -d "{{SCHEME}}://{{HOST}}" {{APP_NAME}}
+~~~
+
 
 **Notes about symlink file leakage**
 If the app does this:
@@ -53,6 +78,35 @@ In a malicious app, do this:
 This blog: <https://hackerone.com/reports/161710> is a great example.
 
 **Notes about webview:**
+
+- Enable Webview Debug:
+
+~~~
+setTimeout(function() {
+    Java.perform(function() {
+      console.log("In da house..")
+      clazz_Thread = Java.use("java.lang.Thread");
+    WebView_hook = Java.use("android.webkit.WebView");
+    var overloadz_WebView_hook = eval("WebView_hook.setWebViewClient.overloads");
+    var ovl_count_WebView_hook = overloadz_WebView_hook.length;
+    
+
+    var cell = {}
+
+    for (var i = 0; i < ovl_count_WebView_hook; i++) {
+      setWebViewClient_hook = eval('WebView_hook.setWebViewClient.overloads[i]')
+        setWebViewClient_hook.implementation = function () {
+          this.setWebContentsDebuggingEnabled(true)
+          this.setWebViewClient.apply(this, arguments)
+        }
+    }
+
+
+// Added Hook 
+
+    });
+}, 0);
+~~~
 
 ~~~
 webview.load(url);
